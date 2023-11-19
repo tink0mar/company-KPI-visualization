@@ -1,1 +1,3 @@
-# company-KPI-visualization
+# Company KPI Visualization
+
+This project is viaulizing company`KPIs
