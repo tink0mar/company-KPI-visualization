@@ -4,17 +4,17 @@ module.exports = {
 	theme: {
 		extend: {
 			width: {
-				1000: '1000px',
+				1000: '1010px',
 			},
 			height: {
-				1000: '650px',
+				650: '650px',
 			},
 		},
 	},
 	safelist: [
 		{
 			pattern:
-				/bg-(red|green|blue)-(100|200|300|400|500|600|700|800|900)/,
+				/bg-(red|green|blue)-(100|200|300|400|500|600|700|800|900|950)/,
 		},
 		{
 			pattern:
@@ -23,6 +23,9 @@ module.exports = {
 		{
 			pattern:
 				/(from|to)-(red|green|blue)-(100|200|300|400|500|600|700|800|900)/,
+		},
+		{
+			pattern: /(border)-(red|green|blue)-500/,
 		},
 	],
 	plugins: [],

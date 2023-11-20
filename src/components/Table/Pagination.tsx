@@ -1,6 +1,6 @@
 // src/components/Pagination/Pagination.tsx
 import React from 'react';
-import { useMyContext } from '../../ThemeContext';
+import { useThemeContext } from '../../ThemeContext';
 
 interface PaginationProps {
 	currentPage: number;
@@ -13,7 +13,7 @@ const Pagination: React.FC<PaginationProps> = ({
 	totalPages,
 	onPageChange,
 }) => {
-	const { color, updateValue } = useMyContext();
+	const { color } = useThemeContext();
 
 	return (
 		<div className="flex justify-center mt-4">

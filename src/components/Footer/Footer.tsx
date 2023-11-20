@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { useMyContext } from '../../ThemeContext';
+import React from 'react';
+import { useThemeContext } from '../../ThemeContext';
 
 const Footer: React.FC = () => {
-	const { color } = useMyContext();
+	const { color } = useThemeContext();
 
 	return (
 		<footer className={`bg-${color}-900 text-white text-left p-4 pl-32`}>

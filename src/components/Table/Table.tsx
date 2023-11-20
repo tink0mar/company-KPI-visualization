@@ -5,11 +5,11 @@ import { Status } from '../../types/types';
 const getStatusColor = (status: Status) => {
 	switch (status) {
 		case 'Active':
-			return 'text-green-600'; // Use Tailwind CSS classes for green color
+			return 'text-green-600';
 		case 'Pending':
-			return 'text-yellow-500'; // Use Tailwind CSS classes for yellow color
+			return 'text-yellow-500';
 		case 'Inactive':
-			return 'text-red-500'; // Use Tailwind CSS classes for red color
+			return 'text-red-500';
 		default:
 			return '';
 	}
@@ -22,8 +22,8 @@ export const Table: React.FunctionComponent<{
 	handleSort: (column: any) => void;
 	header: Array<string>;
 }> = ({ data, itemsPerPage, header, onRowClick, handleSort }) => {
-	const [currentPage, setCurrentPage] = useState(1);
-	const [selectedRowId, setSelectedRow] = useState<number | null>(null);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [selectedRowID, setSelectedRow] = useState<any | null>(null);
 	const totalPages = Math.ceil(data.length / itemsPerPage);
 	const startIndex = (currentPage - 1) * itemsPerPage;
 	const limitedData = data.slice(startIndex, startIndex + itemsPerPage);
@@ -37,7 +37,7 @@ export const Table: React.FunctionComponent<{
 	};
 
 	const handleRowClick = (row: any) => {
-		setSelectedRow(row);
+		setSelectedRow(row.id);
 		onRowClick(row);
 	};
 
@@ -45,20 +45,30 @@ export const Table: React.FunctionComponent<{
 		handleSort(head);
 	};
 
+	const formatHead = (head: string) => {
+		const formattedItem = head.replace(/([A-Z])/g, ' $1'); // Insert space before uppercase letter
+		const formattedHead =
+			formattedItem.charAt(0).toUpperCase() + formattedItem.slice(1); // Make the first letter uppercase
+
+		return formattedHead;
+	};
+
 	return (
 		<div>
 			<table className="text-left w-full fixed-layout text-sm font-light">
 				<thead className="border-b font-bold dark:border-neutral-500">
-					<tr className="bg-gray-600 text-white rounded-lg">
-						{header.map((head, index) => (
-							<th
-								key={index}
-								onClick={() => handleHeaderClick(`${head}`)}
-								className="px-4 py-4 hover:text-blue-300 hover:cursor-pointer"
-							>
-								{head}
-							</th>
-						))}
+					<tr className={`bg-gray-600 text-white rounded-lg`}>
+						{header.map((head, index) => {
+							return (
+								<th
+									key={index}
+									onClick={() => handleHeaderClick(`${head}`)}
+									className="px-4 py-4 hover:text-blue-300 hover:cursor-pointer"
+								>
+									{formatHead(head)}
+								</th>
+							);
+						})}
 					</tr>
 				</thead>
 				<tbody>
@@ -66,7 +76,7 @@ export const Table: React.FunctionComponent<{
 						<tr
 							key={row.id}
 							className={`hover:bg-gray-400 h-14 hover:cursor-pointer border-b dark:border-neutral-300 ${
-								row === selectedRowId ? 'bg-gray-400' : ''
+								row.id === selectedRowID ? 'bg-gray-400' : ''
 							} `}
 							onClick={() => handleRowClick(row)}
 						>

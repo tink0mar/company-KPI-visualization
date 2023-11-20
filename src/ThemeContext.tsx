@@ -1,13 +1,13 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
-export interface ThemeContext {
+export interface IThemeContext {
 	color: 'red' | 'green' | 'blue';
 	updateValue: (color: 'red' | 'green' | 'blue') => void;
 }
 
-export const MyContext = createContext<ThemeContext | undefined>(undefined);
+const ThemeContext = createContext<IThemeContext | undefined>(undefined);
 
-export const MyContextProvider: React.FC<{
+export const ThemeContextProvider: React.FC<{
 	children: ReactNode;
 }> = ({ children }) => {
 	const [color, setValue] = React.useState<'red' | 'green' | 'blue'>('blue');
@@ -16,22 +16,22 @@ export const MyContextProvider: React.FC<{
 		setValue(color);
 	};
 
-	const contextValue: ThemeContext = {
-		color,
-		updateValue,
-	};
-
 	return (
 		<div>
-			<MyContext.Provider value={contextValue}>
+			<ThemeContext.Provider
+				value={{
+					color,
+					updateValue,
+				}}
+			>
 				{children}
-			</MyContext.Provider>
+			</ThemeContext.Provider>
 		</div>
 	);
 };
 
-export const useMyContext = (): ThemeContext => {
-	const context = useContext(MyContext);
+export const useThemeContext = (): IThemeContext => {
+	const context = useContext(ThemeContext);
 
 	if (!context) {
 		throw new Error('useMyContext must be used within a MyContextProvider');

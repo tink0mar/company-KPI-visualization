@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ReactApexChart from 'react-apexcharts';
 import { MonthlyData } from '../../types/types';
-import { useMyContext } from '../../ThemeContext';
+import { useThemeContext } from '../../ThemeContext';
 
 interface MonthlyKPI {
 	totalRevenue: number;
@@ -32,7 +32,7 @@ export const Graph: React.FunctionComponent<{
 	company: string | null;
 }> = ({ monthlyData, company }) => {
 	const [chartType, setChartType] = useState<'line' | 'column'>('line');
-	const { color } = useMyContext();
+	const { color } = useThemeContext();
 
 	const { totalRevenue, totalExpenses, totalProfit } =
 		calculateMonthlyKPI(monthlyData);
@@ -68,10 +68,18 @@ export const Graph: React.FunctionComponent<{
 				</div>
 
 				<div>
-					<div className="font-bold">{company}</div>
-					<div className="font-bold">{totalRevenue.toFixed(2)}</div>
-					<div className="font-bold">{totalExpenses.toFixed(2)}</div>
-					<div className="font-bold">{totalProfit.toFixed(2)}</div>
+					<div className="font-bold">
+						{company ? company : 'no selected company'}
+					</div>
+					<div className="font-bold">
+						{totalRevenue ? totalRevenue.toFixed(2) : 0}$
+					</div>
+					<div className="font-bold">
+						{totalExpenses ? totalExpenses.toFixed(2) : 0}$
+					</div>
+					<div className="font-bold">
+						{totalProfit ? totalProfit.toFixed(2) : 0}$
+					</div>
 				</div>
 			</div>
 
@@ -101,23 +109,37 @@ export const Graph: React.FunctionComponent<{
 
 			<div className=" p-4 ">
 				<ReactApexChart
+					style={{
+						'.apexcharts-tooltip': {
+							'background-color': 'black',
+							color: 'black',
+						},
+					}}
 					options={{
 						chart: {
 							height: 350,
 							zoom: {
 								enabled: false,
 							},
+							toolbar: {
+								show: false,
+							},
 						},
+
 						xaxis: {
 							type: 'datetime',
 							categories: monthlyData.map(entry => entry.date),
+							title: {
+								text: 'Date',
+							},
 						},
 						yaxis: {
 							title: {
-								text: 'Amount',
+								text: 'Amount in USD',
 							},
 						},
 						legend: {
+							position: 'top',
 							onItemClick: {
 								toggleDataSeries: true,
 							},

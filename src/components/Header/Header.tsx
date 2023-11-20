@@ -1,43 +1,55 @@
 import React from 'react';
-import { useMyContext } from '../../ThemeContext';
+import { useThemeContext } from '../../ThemeContext';
 
 export const Header = () => {
-	const { color, updateValue } = useMyContext();
+	const { color, updateValue } = useThemeContext();
 
 	return (
-		<header
-			className={`flex flex-col justify-center items-center h-screen/3 bg-gradient-to-r from-${color}-800 to-${color}-500 text-white p-4 text-4xl font-extrabold tracking-tight`}
-		>
-			<div className="flex flex-row">
-				<div className="flex flex-col items-center mr-12">
-					<div>
-						Company{' '}
-						<span className={`text-${color}-300`}> KPIs</span>
+		<div>
+			<header
+				className={`flex flex-col justify-center items-center h-screen/3 bg-gradient-to-r from-${color}-800 to-${color}-500  p-4  font-extrabold tracking-tight`}
+			>
+				<div className="flex flex-row">
+					<div className="flex flex-col items-center mr-12">
+						<div className="text-white text-4xl">
+							Company{' '}
+							<span className={`text-${color}-300`}> KPIs</span>
+						</div>
+						<div
+							className={`bg-${color}-200 m-4 h-3 rounded-full w-96`}
+						></div>
 					</div>
-					<div
-						className={`bg-${color}-200 m-4 h-3 rounded-full w-96`}
-					></div>
 				</div>
-
-				<button
-					className="bg-gray-100 hover:bg-gray-300 text-xl p-2 m-5 rounded-lg text-red-500"
-					onClick={() => updateValue('red')}
+			</header>
+			<div
+				style={{
+					position: 'absolute',
+					right: 20,
+					top: '7%',
+					transform: 'translateY(-50%)',
+				}}
+				className="flex flex-row items-center position-space-around mr-10"
+			>
+				<div className="text-white text-2xl font-extrabold mr-4">
+					Theme:
+				</div>
+				<select
+					className={`outline-none appearance-none text-xl bg-gray-200 w-24 hover:bg-gray-300 p-2 rounded-lg text-${color}-500 font-extrabold`}
+					onChange={e =>
+						updateValue(e.target.value as 'blue' | 'green' | 'red')
+					}
 				>
-					red
-				</button>
-				<button
-					className="bg-gray-100 hover:bg-gray-300 text-xl p-2 m-5 rounded-lg text-green-500"
-					onClick={() => updateValue('green')}
-				>
-					green
-				</button>
-				<button
-					className="bg-gray-100 hover:bg-gray-300 text-xl p-2 m-5 rounded-lg text-blue-500"
-					onClick={() => updateValue('blue')}
-				>
-					blue
-				</button>
+					<option value="red" className=" text-center">
+						red
+					</option>
+					<option value="green" className=" text-center">
+						green
+					</option>
+					<option value="blue" className=" text-center">
+						blue
+					</option>
+				</select>
 			</div>
-		</header>
+		</div>
 	);
 };

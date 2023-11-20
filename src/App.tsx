@@ -5,7 +5,6 @@ import { data } from './data/data';
 import { MonthlyData } from './types/types';
 import Footer from './components/Footer/Footer';
 import { Graph } from './components/Graph/Graph';
-import { MyContextProvider } from './ThemeContext';
 
 function App() {
 	const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
@@ -32,25 +31,23 @@ function App() {
 	};
 
 	return (
-		<MyContextProvider>
-			<div className="flex flex-col h-screen">
-				<Header />
-				<div className="flex-grow p-4 bg-gray-300">
-					<main className="flex flex-row place-content-stretch m-10 place-items-center ">
-						<CompanyTable
-							data={data}
-							onSelectCompany={handleSelectCompany}
-						/>
-						<Graph
-							monthlyData={filteredData}
-							company={selectedCompany}
-						/>
-					</main>
-				</div>
-
-				<Footer />
+		<div className="flex flex-col h-screen">
+			<Header />
+			<div className="flex-grow p-4 bg-gray-300">
+				<main className="flex flex-row place-content-stretch m-10 place-items-center ">
+					<CompanyTable
+						data={data}
+						onSelectCompany={handleSelectCompany}
+					/>
+					<Graph
+						monthlyData={filteredData}
+						company={selectedCompany}
+					/>
+				</main>
 			</div>
-		</MyContextProvider>
+
+			<Footer />
+		</div>
 	);
 }
 
