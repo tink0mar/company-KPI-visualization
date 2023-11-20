@@ -14,9 +14,13 @@ One bonus challenge was making the table and graph look different. So, I added a
 
 # Setup
 
-Run the application:
+Install node modules:
 
-`$ make`
+`$ make install`
+
+Start project:
+
+`$ make start`
 
 # Usage
 
