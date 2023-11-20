@@ -10,6 +10,8 @@ To keep things organized, I divided the project into components. For the table, 
 
 For charts, I went with [ApexCharts](https://apexcharts.com/) and put there two buttons for switching graph types.
 
+I misunderstood the assignment at the beginning, so I created a separate chart. After consulting, I wanted to display this graph on a hover, but it was not as usable as my first solution.
+
 One bonus challenge was making the table and graph look different. So, I added a global theme feature using the Context API. Now users can choose a color theme that suits their vibe :D.
 
 # Setup
