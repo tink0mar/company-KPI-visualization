@@ -39,14 +39,14 @@ export const Header = () => {
 						updateValue(e.target.value as 'blue' | 'green' | 'red')
 					}
 				>
+					<option value="blue" className=" text-center">
+						blue
+					</option>
 					<option value="red" className=" text-center">
 						red
 					</option>
 					<option value="green" className=" text-center">
 						green
-					</option>
-					<option value="blue" className=" text-center">
-						blue
 					</option>
 				</select>
 			</div>
