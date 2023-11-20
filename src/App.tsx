@@ -31,10 +31,10 @@ function App() {
 	};
 
 	return (
-		<div className="flex flex-col h-screen">
+		<div className="flex flex-col min-h-screen">
 			<Header />
 			<div className="flex-grow p-4 bg-gray-300">
-				<main className="flex flex-row place-content-stretch m-10 place-items-center ">
+				<main className="flex flex-row place-content-stretch m-12 place-items-center ">
 					<CompanyTable
 						data={data}
 						onSelectCompany={handleSelectCompany}

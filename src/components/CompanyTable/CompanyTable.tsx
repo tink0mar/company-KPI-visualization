@@ -76,7 +76,7 @@ export const CompanyTable: React.FunctionComponent<{
 	};
 
 	return (
-		<div className="table-component w-1000 h-650 bg-gray-100 rounded-lg shadow-xl pb-4 pt-2">
+		<div className="table-component w-1000 h-650 bg-gray-100 rounded-lg shadow-xl pb-4 mb-6">
 			<div className="flex justify-center m-4 items-center">
 				<div className="text-xl font-semibold mr-48"> Companies</div>
 
@@ -119,7 +119,7 @@ export const CompanyTable: React.FunctionComponent<{
 					/>
 				</div>
 			</div>
-			<div className="table-component w-1000 h-1000 bg-gray-100 rounded-lg shadow-xl pb-4 pt-2">
+			<div className="table-component w-1000 h-1000 bg-gray-100 rounded-lg shadow-xl pb-4">
 				<Table
 					data={sortedData}
 					itemsPerPage={itemsPerPage}
