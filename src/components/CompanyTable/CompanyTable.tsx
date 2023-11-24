@@ -12,6 +12,7 @@ export const CompanyTable: React.FunctionComponent<{
 	data: Array<Entity>;
 	onSelectCompany: (company: string | null) => void;
 }> = ({ data, onSelectCompany }) => {
+	// Abstract all the sates and functions into custom hook
 	const itemsPerPage = 9;
 	const [sortConfig, setSortConfig] = useState<{
 		key: SortingKeys;
@@ -83,12 +84,14 @@ export const CompanyTable: React.FunctionComponent<{
 				<div className="flex justify-center ">
 					<Select
 						label="Status"
+						// Dynamically get options
 						options={['Active', 'Pending', 'Inactive']}
 						value={filteredStatus}
 						onChange={setFilteredStatus}
 					/>
 					<Select
 						label="Region"
+						// Dynamically get options
 						options={[
 							'Europe',
 							'South America',
@@ -102,6 +105,7 @@ export const CompanyTable: React.FunctionComponent<{
 					/>
 					<Select
 						label="Sector"
+						// Dynamically get options
 						options={[
 							'Technology',
 							'Energy',
@@ -125,6 +129,7 @@ export const CompanyTable: React.FunctionComponent<{
 					itemsPerPage={itemsPerPage}
 					onRowClick={handleClickedRow}
 					handleSort={handleSort}
+					// Dynamically get headers
 					header={[
 						'id',
 						'company',
