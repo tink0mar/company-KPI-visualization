@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Pagination from './Pagination';
 import { Status } from '../../types/types';
 
+
+// Use memoization
 const getStatusColor = (status: Status) => {
 	switch (status) {
 		case 'Active':
@@ -22,6 +24,7 @@ export const Table: React.FunctionComponent<{
 	handleSort: (column: any) => void;
 	header: Array<string>;
 }> = ({ data, itemsPerPage, header, onRowClick, handleSort }) => {
+	// use custom hoook
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [selectedRowID, setSelectedRow] = useState<any | null>(null);
 	const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -71,6 +74,7 @@ export const Table: React.FunctionComponent<{
 						})}
 					</tr>
 				</thead>
+				// Move body into separate component
 				<tbody>
 					{limitedData.map(row => (
 						<tr

@@ -10,6 +10,7 @@ interface MonthlyKPI {
 	totalProfit: number;
 }
 
+// Use memoization to cache the data
 const calculateMonthlyKPI = (monthlyData: MonthlyData[]): MonthlyKPI => {
 	const totalRevenue = monthlyData.reduce(
 		(acc, entry) => acc + entry.Revenue,
@@ -31,12 +32,14 @@ export const Graph: React.FunctionComponent<{
 	monthlyData: Array<MonthlyData>;
 	company: string | null;
 }> = ({ monthlyData, company }) => {
+	// Use custom hook to move this logic
 	const [chartType, setChartType] = useState<'line' | 'column'>('line');
 	const { color } = useThemeContext();
 
 	const { totalRevenue, totalExpenses, totalProfit } =
 		calculateMonthlyKPI(monthlyData);
 
+	// Use memoization to cache the data
 	const chartSeries = [
 		{
 			type: chartType,
@@ -84,6 +87,7 @@ export const Graph: React.FunctionComponent<{
 			</div>
 
 			<div className=" flex w-52 ml-10 flex-row mt-10 ">
+				// This button could be a separate component
 				<button
 					className={`flex-1 py-2 text-center focus:outline-none ${
 						chartType === 'line'
